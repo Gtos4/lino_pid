@@ -1,23 +1,23 @@
-#include "lino_pid/lino_pid_core.h"
+#include "gvac_pid/gvac_pid_core.h"
 
-LinoPID::LinoPID()
+gvacPID::gvacPID()
 {
 }
 
-LinoPID::~LinoPID()
+gvacPID::~gvacPID()
 {
 }
 
-void LinoPID::publishMessage(ros::Publisher *pub_message)
+void gvacPID::publishMessage(ros::Publisher *pub_message)
 {
-  lino_msgs::PID msg;
+  gvac_msgs::PID msg;
   msg.p = p_;
   msg.d = d_;
   msg.i = i_;
   pub_message->publish(msg);
 }
 
-void LinoPID::messageCallback(const lino_msgs::PID::ConstPtr &msg)
+void gvacPID::messageCallback(const gvac_msgs::PID::ConstPtr &msg)
 {
   p_ = msg->p;
   d_ = msg->d;
@@ -29,7 +29,7 @@ void LinoPID::messageCallback(const lino_msgs::PID::ConstPtr &msg)
   ROS_INFO("I: %f", i_);
 }
 
-void LinoPID::configCallback(lino_pid::linoPIDConfig &config, double level)
+void gvacPID::configCallback(gvac_pid::gvacPIDConfig &config, double level)
 {
   //for PID GUI
   p_ = config.p;
